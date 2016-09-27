@@ -17,8 +17,8 @@
         "name": "icon.png"
       },
       "main.js": {
-        "previousModTime": 1474936103368,
-        "modified": 1474936103368,
+        "previousModTime": 1474950127839,
+        "modified": 1474950127839,
         "seen": true,
         "name": "main.js"
       },
@@ -41,8 +41,8 @@
         "name": "selbo_7.xdk"
       },
       "selbo_7.xdke": {
-        "previousModTime": 1474936075421,
-        "modified": 1474936075421,
+        "previousModTime": 1474950068560,
+        "modified": 1474950068560,
         "seen": true,
         "name": "selbo_7.xdke"
       },
@@ -75,11 +75,23 @@
         "modified": 1474914374339,
         "seen": true,
         "name": "main_new.js"
+      },
+      ".gitattributes": {
+        "previousModTime": 1474936467332,
+        "modified": 1474936467332,
+        "seen": true,
+        "name": ".gitattributes"
+      },
+      ".gitignore": {
+        "previousModTime": 1474936467359,
+        "modified": 1474936467359,
+        "seen": true,
+        "name": ".gitignore"
       }
     },
     "boardFileStatus": {
       "main.js": {
-        "previousModTime": 1474936105710
+        "previousModTime": 1474950132161
       }
     }
   }
