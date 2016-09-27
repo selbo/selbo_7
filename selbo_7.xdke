@@ -1,0 +1,86 @@
+{
+  "project": {
+    "projectSettingsVersion": "3.0.0",
+    "currentBuildConfiguration": null,
+    "projectFiles": {},
+    "projectDirectories": {}
+  },
+  "editorTab": {
+    "currentEditorMode": 0
+  },
+  "iot-tab": {
+    "fileStatus": {
+      "icon.png": {
+        "previousModTime": 1474912468654,
+        "modified": 1474912468654,
+        "seen": true,
+        "name": "icon.png"
+      },
+      "main.js": {
+        "previousModTime": 1474936103368,
+        "modified": 1474936103368,
+        "seen": true,
+        "name": "main.js"
+      },
+      "package.json": {
+        "previousModTime": 1474918709338,
+        "modified": 1474918709338,
+        "seen": true,
+        "name": "package.json"
+      },
+      "README.md": {
+        "previousModTime": 1474912468654,
+        "modified": 1474912468654,
+        "seen": true,
+        "name": "README.md"
+      },
+      "selbo_7.xdk": {
+        "previousModTime": 1474912469182,
+        "modified": 1474912469182,
+        "seen": true,
+        "name": "selbo_7.xdk"
+      },
+      "selbo_7.xdke": {
+        "previousModTime": 1474936075421,
+        "modified": 1474936075421,
+        "seen": true,
+        "name": "selbo_7.xdke"
+      },
+      "xdk/project-info.json": {
+        "previousModTime": 1474912469062,
+        "modified": 1474912469062,
+        "seen": true,
+        "name": "xdk/project-info.json"
+      },
+      "main2.js": {
+        "previousModTime": 1474914374340,
+        "modified": 1474914374340,
+        "seen": true,
+        "name": "main2.js"
+      },
+      "main_template.js": {
+        "previousModTime": 1474920882359,
+        "modified": 1474920882359,
+        "seen": true,
+        "name": "main_template.js"
+      },
+      "msg.js": {
+        "previousModTime": 1474934381782,
+        "modified": 1474934381782,
+        "seen": true,
+        "name": "msg.js"
+      },
+      "main_new.js": {
+        "previousModTime": 1474914374339,
+        "modified": 1474914374339,
+        "seen": true,
+        "name": "main_new.js"
+      }
+    },
+    "boardFileStatus": {
+      "main.js": {
+        "previousModTime": 1474936105710
+      }
+    }
+  }
+}
