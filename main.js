@@ -6,6 +6,16 @@ var ws = null;
 var connect_interval=3000; 
 var ON_OFF = 0.0 ;
 
+
+var myDigitalValue = 1 ;
+  var PreviewMyDigitalValue = 1 ;
+  var analogValue0 = 500 ;
+  var analogValue1 =500 ;
+  var PreviewAnalogValue0 = 500 ;
+  var PreviewAnalogValue1 =500 ;
+
+
+
 process.on('uncaughtException', function (err) {
     console.log(err);
 }); 
@@ -24,6 +34,8 @@ function send(command,data_)
     d.data=data_;
     ws.send(JSON.stringify(d));
 }
+
+
 
 var restart_limit=5; 
 var restart_counter=restart_limit;
@@ -104,8 +116,8 @@ function on_message(data, flags) {
 	//json.data //on/off
 
    console.log("Connection after msg recv");
-  if (json.cmd == "led"){
-    if (json.data == "on") {
+  if (json.cmd == "nav"){
+    if (json.data == "pause") {
             ON_OFF = 1.0;
        //     send("led_status","off");
             console.log("send led is closed");
@@ -117,7 +129,7 @@ function on_message(data, flags) {
         }
   }
     
-    if (json.cmd == "led") {
+    if (json.cmd == "nav") {
         /*
         if (json.data == "on") {
             ON_OFF = 1.0;
@@ -139,7 +151,7 @@ function on_message(data, flags) {
 //    }
     
     
-   if (json.cmd == "led") {
+   if (json.cmd == "nav") {
        /*
        if (json.data == "on") {
             ON_OFF = 1.0;
@@ -159,7 +171,7 @@ function on_message(data, flags) {
 //    } 
     
     
-  if (json.cmd == "led") {
+  if (json.cmd == "nav") {
       /*
       if (json.data == "on") {
             ON_OFF = 1.0;
@@ -179,8 +191,8 @@ function on_message(data, flags) {
  //   }
 
     
-    if (json.cmd == "led") {
-        if (json.data == "on") {
+    if (json.cmd == "nav") {
+        if (json.data == "pause") {
            // ON_OFF = 1.0;
             console.log("send led is closed");
         //    send("led_status","off");
@@ -230,7 +242,7 @@ console.log('MRAA Version: ' + mraa.getVersion()); //write the mraa version to t
 
  
     
-  /*  
+    
 var myDigitalPin8 = new mraa.Gpio(8); //setup digital read on Digital pin #6 (D6)
 myDigitalPin8.dir(mraa.DIR_IN); //set the gpio direction to input
 
@@ -241,25 +253,64 @@ var analogPin1 = new mraa.Aio(1); //setup access analog input Analog pin #0 (A0)
     
 periodicActivity(); //call the periodicActivity function
 
+var joystick_filter_treshold=30; 
+
 function periodicActivity() //
 {
-  var myDigitalValue =  myDigitalPin8.read(); //read the digital value of the pin
+  
+    
+  setTimeout(periodicActivity,1000); //call the indicated function after 1 second (1000 milliseconds) 
+  myDigitalValue =  myDigitalPin8.read(); //read the digital value of the pin
   console.log('Gpio is ' + myDigitalValue); //write the read value out to the console
-  setTimeout(periodicActivity,1000); //call the indicated function after 1 second (1000 milliseconds)
+//  setTimeout(periodicActivity,1000); //call the indicated function after 1 second (1000 milliseconds)
    
     
-var analogValue0 = analogPin0.read(); //read the value of the analog pin
+analogValue0 = analogPin0.read(); //read the value of the analog pin
     
 
     
 console.log(analogValue0); //write the value of the analog pin to the console
-
-
-var analogValue1 = analogPin1.read(); //read the value of the analog pin
 console.log(analogValue1); //write the value of the analog pin to the console
+
+analogValue1 = analogPin1.read(); //read the value of the analog pin
+
+var move0=0; 
+var move1=0; 
+if (Math.abs(500-analogValue0)>joystick_filter_treshold)
+    move0=analogValue0-500; 
+if (Math.abs(500-analogValue1)>joystick_filter_treshold)
+    move1=analogValue1-500; 
+if (move0==0&&move1==0)
+    return; 
+move0=(move0*100)/500;
+move1=(move1*100)/500;
+
+    
+    if ((analogValue0 >= (PreviewAnalogValue0+10) || analogValue0 <= (PreviewAnalogValue0-10)) ){
+        console.log("send joystick_vertical");
+        setTimeout(send("joystick_vertical",move0),10);
+    }
+    PreviewAnalogValue0 = analogValue0 ;
+    
+     if ((analogValue1 >= (PreviewAnalogValue1+10) || analogValue1 <= (PreviewAnalogValue1-10)) ){
+        console.log("send joystick_horizontal");
+        setTimeout(send("joystick_horizontal",move1),10);
+    }
+    PreviewAnalogValue1 = analogValue1 ;
+    
+    if (myDigitalValue != PreviewMyDigitalValue ){
+        console.log("send joystick_button");
+    
+        if (myDigitalValue == 0){
+            setTimeout(send("joystick_button","on"),1);
+        }
+        else {
+           setTimeout(send("joystick_button","off"),1); 
+        }
+    }
+    PreviewMyDigitalValue = myDigitalValue ;
 }
     //myOnboardLed.write(ledState?1:0); //if ledState is true then write a '1' (high) otherwise write a '0' (low)
     //data.value = ledState;
     //io.emit('toogle led', data);
     //ledState = !ledState; //invert the ledState
-*/
